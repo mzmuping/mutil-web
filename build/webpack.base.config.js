@@ -2,6 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const fs = require('fs')
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const DedeCMSWebpackPlugin = require('./cms-plugin')
+const FileListPlugin = require('./file-list-webpack-plugin')
 const { getMultiPageHtml, getMultiPageConfig, isEnvProduction } = require('./utils')
 const { appDir, srcDir } = require('./paths')
 const multiPageList = getMultiPageHtml('src')
@@ -53,7 +56,10 @@ module.exports = {
                 }
             }
         },
-        runtimeChunk: { name: 'manifest' } // 运行时代码
+        runtimeChunk: { name: 'manifest' }, // 运行时代码
+        minimizer: [
+            new CssMinimizerPlugin()//压缩css
+        ],
     },
     module: {
         rules: [
@@ -62,7 +68,8 @@ module.exports = {
                 type: "asset",//https://webpack.docschina.org/guides/asset-modules
                 generator: {
                     // 输出文件名
-                    filename: 'static/img/[hash][ext][query]'
+                    filename: 'static/img/[name].[hash][ext][query]',
+
                 },
                 parser: {
                     dataUrlCondition: {
@@ -106,6 +113,10 @@ module.exports = {
         isEnvProduction && new MiniCssExtractPlugin({
             filename: 'static/css/[contenthash:8].css',
             chunkFilename: 'static/css/[contenthash:8].chunk.css',
+        }),
+        new DedeCMSWebpackPlugin(),
+        new FileListPlugin({
+            filename: '文档.md'
         })
     ].filter(Boolean)
 }

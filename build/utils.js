@@ -21,7 +21,7 @@ function getMultiPageHtml(filePath) {
     return files.reduce((arr, file) => {
         let key = file.replace(/(^src\/|\.html$)/g, '');
         return arr.concat([[
-            key,                                                // 入口 chunk key（用文件路径可保证key唯一性）
+            key,                                              // 入口 chunk key（用文件路径可保证key唯一性）
             resolve(appDir, file),                           //html template url
             resolve(appDir, `${dirname(file)}/index.js`)     //入口js文件 url
         ]])
@@ -43,22 +43,20 @@ function getMultiPageConfig(files) {
                             chunks: ['common', 'vendor', 'manifest', fileDirname],
                             template,
                             filename: `${fileDirname}.html`,
+                            minify: {
+                                removeComments: true,
+                                collapseWhitespace: true,
+                                removeRedundantAttributes: true,
+                                useShortDoctype: true,
+                                removeEmptyAttributes: true,
+                                removeStyleLinkTypeAttributes: true,
+                                keepClosingSlash: true,
+                                minifyJS: true,
+                                minifyCSS: true,
+                                minifyURLs: true,
+                            },
                         },
-                        // isEnvProduction
-                        // && {
-                        //     minify: {
-                        //         removeComments: true,
-                        //         collapseWhitespace: true,
-                        //         removeRedundantAttributes: true,
-                        //         useShortDoctype: true,
-                        //         removeEmptyAttributes: true,
-                        //         removeStyleLinkTypeAttributes: true,
-                        //         keepClosingSlash: true,
-                        //         minifyJS: true,
-                        //         minifyCSS: true,
-                        //         minifyURLs: true,
-                        //     },
-                        // }
+
                     )
                 )
             )
