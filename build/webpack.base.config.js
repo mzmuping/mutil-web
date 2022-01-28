@@ -88,7 +88,12 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader',
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        // options:{}放在 .babelrc
+                    }
+                ]
             },
             {
                 test: /\.(le|c)ss$/i,

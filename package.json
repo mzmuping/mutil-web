@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "loader": "webpack --config build/webpack-loader-config.js",
     "dev": "dotenv -e envs/.env.development -- npx webpack serve --config build/webpack.dev.config.js",
     "build": "dotenv -e envs/.env.production -- npx webpack  --config build/webpack.prod.config.js"
   },
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "autoprefixer": "^10.4.2",
+    "css": "^3.0.0",
     "css-minimizer-webpack-plugin": "^3.4.1",
     "dotenv-cli": "^4.1.1",
     "glob": "^7.2.0",
