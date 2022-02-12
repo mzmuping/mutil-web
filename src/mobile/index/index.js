@@ -1,15 +1,19 @@
 // import { globby } from 'globby';
-
-// const axios = require('axios');
+import ePub from 'epubjs'
 import img from '@/src/assets/01.png'
 import '@/print.js'
 import './index.less'
-
-var div = document.createElement('div')
-var imgs = document.createElement('img')
-div.innerHTML = '你好！1111sssss少爽肤水sfad'
-imgs.src = img
-document.body.appendChild(div);
-document.body.appendChild(imgs);
-
-console.log('./static/'.replace(/(["'])?(\/)?static\//ig, 'sss'))
+// const pdf = require("../../assets/package.opf")
+var book = ePub('https://s3.amazonaws.com/epubjs/books/moby-dick/OPS/package.opf');
+let bookReady;
+const rendition = book.renderTo("viewer", {
+    flow: "paginated",
+    manager: "continuous",
+    width: '100%',
+    height: '100%',
+    snap: true,
+});
+book.ready.then(() => {
+    rendition.display();
+    bookReady = true;
+});

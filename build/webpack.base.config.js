@@ -64,7 +64,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
+                test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif|pdf|opf)$/i,
                 type: "asset",//https://webpack.docschina.org/guides/asset-modules
                 generator: {
                     // 输出文件名

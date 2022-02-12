@@ -19,6 +19,7 @@
     "core-js": "^3.20.3",
     "css-loader": "^6.5.1",
     "dotenv": "^14.2.0",
+    "epubjs": "^0.3.92",
     "globby": "11.1.0",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
