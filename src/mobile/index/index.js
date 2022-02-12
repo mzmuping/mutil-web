@@ -8,9 +8,10 @@ var book = ePub('https://s3.amazonaws.com/epubjs/books/moby-dick/OPS/package.opf
 let bookReady;
 const rendition = book.renderTo("viewer", {
     flow: "paginated",
-    manager: "continuous",
+    manager: "continuous",//continuous double
     width: '100%',
     height: '100%',
+    // script: 'allow'
     snap: true,
 });
 book.ready.then(() => {
