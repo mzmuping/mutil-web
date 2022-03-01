@@ -3,6 +3,7 @@ import ePub from 'epubjs'
 import img from '@/src/assets/01.png'
 import '@/print.js'
 import './index.less'
+import "./队列.js"
 // const pdf = require("../../assets/package.opf")
 var book = ePub('https://s3.amazonaws.com/epubjs/books/moby-dick/OPS/package.opf');
 let bookReady;
