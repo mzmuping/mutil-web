@@ -18,7 +18,7 @@ module.exports = {
         // filename: 'static/js/[name].bundle.js',
         // chunkFilename: 'static/js/[name].bundle.js',
         path: path.resolve(process.cwd(), 'dist'),
-        publicPath: isEnvProduction ? '/' : 'http://localhost:8080/',
+        publicPath: isEnvProduction ? '/' : './',
         clean: true, // 在生成文件之前清空 output 目录
     },
     resolve: {
