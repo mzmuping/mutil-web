@@ -5,6 +5,8 @@ import '@/print.js'
 import './index.less'
 import "./队列.js"
 // const pdf = require("../../assets/package.opf")
+import './搜索旋转排序数组.js'
+import './栈结构.js'
 var book = ePub('https://s3.amazonaws.com/epubjs/books/moby-dick/OPS/package.opf');
 let bookReady;
 const rendition = book.renderTo("viewer", {
@@ -19,3 +21,5 @@ book.ready.then(() => {
     rendition.display();
     bookReady = true;
 });
+
+
