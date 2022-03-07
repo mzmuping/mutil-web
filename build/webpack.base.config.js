@@ -9,16 +9,18 @@ const { getMultiPageHtml, getMultiPageConfig, isEnvProduction } = require('./uti
 const { appDir, srcDir } = require('./paths')
 const multiPageList = getMultiPageHtml('src')
 const { entryJs, htmlPlugins, pagePaths } = getMultiPageConfig(multiPageList)
+console.log('entryJs===',entryJs)
 fs.writeFileSync(path.resolve(appDir, 'page.route.json'), JSON.stringify(pagePaths, null, 4))
 module.exports = {
+    // entry:'./index.js',
     entry: entryJs,
     output: {
-        filename: 'static/js/[name].bundle.[contenthash:8].js',
-        chunkFilename: 'static/js/[name].bundle.[contenthash:8].js',
-        // filename: 'static/js/[name].bundle.js',
-        // chunkFilename: 'static/js/[name].bundle.js',
+        // filename: 'static/js/[name].bundle.[contenthash:8].js',
+        // chunkFilename: 'static/js/[name].bundle.[contenthash:8].js',
+        filename: 'static/js/[name].bundle.js',
+        chunkFilename: 'static/js/[name].bundle.js',
         path: path.resolve(process.cwd(), 'dist'),
-        publicPath: isEnvProduction ? '/' : './',
+        publicPath: isEnvProduction ? '/' : '/',
         clean: true, // 在生成文件之前清空 output 目录
     },
     resolve: {
@@ -120,7 +122,7 @@ module.exports = {
             chunkFilename: 'static/css/[contenthash:8].chunk.css',
         }),
         new DedeCMSWebpackPlugin(),
-        new FileListPlugin({
+        isEnvProduction &&new FileListPlugin({
             filename: '文档.md'
         })
     ].filter(Boolean)

@@ -34,3 +34,8 @@ class Queue{
 
 
 }
+
+
+const queue = new Queue()
+queue.enqueue('sfsf')
+console.log(queue.front())

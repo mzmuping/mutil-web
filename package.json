@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "loader": "webpack --config build/webpack-loader-config.js",
+    "start": "webpack serve --open",
     "dev": "dotenv -e envs/.env.development -- npx webpack serve --config build/webpack.dev.config.js",
     "build": "dotenv -e envs/.env.production -- npx webpack  --config build/webpack.prod.config.js"
   },
