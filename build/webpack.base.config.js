@@ -20,7 +20,7 @@ module.exports = {
         filename: 'static/js/[name].bundle.js',
         chunkFilename: 'static/js/[name].bundle.js',
         path: path.resolve(process.cwd(), 'dist'),
-        publicPath: isEnvProduction ? '/' : '/',
+        publicPath: '/',
         clean: true, // 在生成文件之前清空 output 目录
     },
     resolve: {
@@ -121,8 +121,8 @@ module.exports = {
             filename: 'static/css/[contenthash:8].css',
             chunkFilename: 'static/css/[contenthash:8].chunk.css',
         }),
-        new DedeCMSWebpackPlugin(),
-        isEnvProduction &&new FileListPlugin({
+        isEnvProduction && new DedeCMSWebpackPlugin(),
+        isEnvProduction && new FileListPlugin({
             filename: '文档.md'
         })
     ].filter(Boolean)

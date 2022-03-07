@@ -33,3 +33,4 @@ const target = 1;
 const res = search(nums, target)
 
 console.log('结果：' + res)
+console.log('结果2：' + res)
