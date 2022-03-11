@@ -1,1 +1,1 @@
-import './集合.js'
+import './集合.js';
