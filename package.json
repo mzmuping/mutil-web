@@ -69,7 +69,7 @@
   },
   "lint-staged": {
     "./src/*.{js,jsx,ts,tsx}": [
-      "eslint", "prettier --write"
+      "eslint", "eslint --fix --ext .js src/ -- prettier --write"
     ],
     "**/*.less": [
       "stylelint --syntax less",
