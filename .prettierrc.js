@@ -10,7 +10,7 @@ module.exports = {
   // inferring these two (Pull Requests welcome):
   parser: "babel",
   jsxBracketSameLine: false,
-  endOfLine:"auto",
+  endOfLine: "auto",
   "no-prototype-builtins": 'off',
   eqeqeq: 'off'
 }

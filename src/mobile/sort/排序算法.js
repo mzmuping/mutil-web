@@ -47,7 +47,6 @@ class ArrayList {
 }
 
 const list = new ArrayList();
-
 list.insert(6);
 list.insert(5);
 list.insert(3);

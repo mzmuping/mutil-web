@@ -1,3 +1,3 @@
-console.log('print.js======')
+console.log('print.js======');
 console.log('多余的');
-Promise.resolve().finally()
+Promise.resolve().finally();
