@@ -12,5 +12,5 @@ module.exports = {
   jsxBracketSameLine: false,
   endOfLine: "auto",
   "no-prototype-builtins": 'off',
-  eqeqeq: 'off'
+  eqeqeq: 'off',
 }

@@ -12,6 +12,8 @@ module.exports = {
   },
   rules: {
     'prettier/prettier': ['error'],
-    eqeqeq: 'off'
+    eqeqeq: 'off',
+    'prefer-const': 'off',
+    'no-empty': 'off'
   }
 };

@@ -10,7 +10,8 @@
     "build": "dotenv -e envs/.env.production -- npx webpack  --config build/webpack.prod.config.js",
     "prepare":"husky install",
     "lint":"lint-staged",
-    "lint:js": "eslint --fix --ext .js src/"
+    "lint:js": "eslint --fix --ext .js src/",
+    "eslint":"eslint"
   },
   "author": "",
   "license": "ISC",
@@ -69,7 +70,7 @@
   },
   "lint-staged": {
     "./src/*.{js,jsx,ts,tsx}": [
-      "eslint", "eslint --fix --ext .js src/ -- prettier --write"
+      "eslint ./src", "eslint --fix --ext .js src/ -- prettier --write"
     ],
     "**/*.less": [
       "stylelint --syntax less",
