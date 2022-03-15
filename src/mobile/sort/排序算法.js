@@ -1,6 +1,7 @@
 class ArrayList {
   constructor() {
     this.array = [];
+    this.index = 0;
   }
 
   // 插入
@@ -28,27 +29,25 @@ class ArrayList {
   bubblesort() {
     const len = this.array.length;
     const arr = this.array;
-    let index = 0;
     // 第一种
-    for (let i = 0; i < len; i++) {
-      for (let n = 0; n < len - i; n++) {
-        index++;
+    // for (let i = 0; i < len; i++) {
+    //   for (let n = 0; n < len - i; n++) {
+    //         this.index++;
+    //     if (arr[n] > arr[n + 1]) {
+    //       this.swap(n, n + 1);
+    //     }
+    //   }
+    // }
+
+    // 第二种
+    for (let i = len - 1; i >= 0; i--) {
+      for (let n = 0; n < i; n++) {
         if (arr[n] > arr[n + 1]) {
           this.swap(n, n + 1);
         }
+        this.index++;
       }
     }
-    // 第二种
-    // for (let i = len - 1; i >= 0; i--) {
-    //     for (let n = 0; n < i; n++) {
-    //         if (arr[n] > arr[n + 1]) {
-    //             this.swap(n, n + 1)
-    //         }
-    //         console.log(this.toString())
-    //     }
-    // }
-
-    console.log(index);
   }
 
   /**
@@ -58,19 +57,17 @@ class ArrayList {
    */
   selectionSort() {
     const len = this.array.length;
-    let index = 0;
 
     for (let j = 0; j < len - 1; j++) {
       let min = j;
-      for (let i = min; i < len; i++) {
-        index++;
+      for (let i = min + 1; i < len; i++) {
         if (this.array[min] > this.array[i]) {
           min = i;
         }
+        this.index++;
       }
       this.swap(min, j);
     }
-    console.log(index);
   }
 
   /**
@@ -78,7 +75,6 @@ class ArrayList {
    */
   insertSort() {
     const len = this.array.length;
-    let index = 0;
 
     for (let i = 1; i < len; i++) {
       const temp = this.array[i];
@@ -86,11 +82,10 @@ class ArrayList {
       while (this.array[j - 1] > temp && j > 0) {
         this.array[j] = this.array[j - 1];
         j--;
-        index++;
+        this.index++;
       }
       this.array[j] = temp;
     }
-    console.log(index);
   }
 
   /**
@@ -138,8 +133,8 @@ class ArrayList {
     if (this.array[center] > this.array[rigth]) {
       this.swap(center, rigth);
     }
-    if (this.array[left] > this.array[rigth]) {
-      this.swap(left, rigth);
+    if (this.array[left] > this.array[center]) {
+      this.swap(left, center);
     }
 
     this.swap(center, rigth - 1);
@@ -152,6 +147,7 @@ class ArrayList {
    */
   quickSort() {
     this.quick(0, this.array.length - 1);
+    console.log('this.index=', this.index);
   }
 
   /**
@@ -166,12 +162,13 @@ class ArrayList {
 
     // 3. 定义变量，用于记录当前找到的位置
     let i = left;
-    let j = rigth;
+    let j = rigth - 1;
 
     // 4. 开始进行交换
-    while (true) {
+    while (i != j) {
       while (this.array[++i] < pivot) {}
       while (this.array[--j] > pivot) {}
+      this.index++;
       if (i < j) {
         this.swap(i, j);
       } else {
@@ -190,6 +187,9 @@ class ArrayList {
 
 const list = new ArrayList();
 
+list.insert(42);
+list.insert(27);
+list.insert(46);
 list.insert(6);
 list.insert(5);
 list.insert(3);
@@ -203,17 +203,23 @@ list.insert(32);
 list.insert(7);
 list.insert(8);
 list.insert(4);
+list.insert(11);
 
 // list.bubblesort();
 // console.log('冒泡排序=', list.array);
 
-// list.selectionSort();
+list.selectionSort();
 // console.log('选择排序=', list.array);
 
 // list.insertSort();
 // console.log('插入排序=', list.array);
 
-list.shellSort();
-console.log('希尔排序=', list.array);
+// list.shellSort();
+// console.log('希尔排序=', list.array);
+
+// list.quickSort();
+
+console.log(list.array);
+console.log(list.index);
 
 export default ArrayList;
