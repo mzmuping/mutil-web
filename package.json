@@ -9,9 +9,8 @@
     "dev": "dotenv -e envs/.env.development -- npx webpack serve --config build/webpack.dev.config.js",
     "build": "dotenv -e envs/.env.production -- npx webpack  --config build/webpack.prod.config.js",
     "prepare":"husky install",
-    "lint":"lint-staged",
     "lint:js": "eslint --fix --ext .js src/",
-    "eslint":"eslint"
+    "eslint":"eslint "
   },
   "author": "",
   "license": "ISC",
