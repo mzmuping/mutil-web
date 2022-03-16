@@ -15,10 +15,10 @@ class TestSort {
   /**
    * 交换位置
    */
-  swap(left, rigth) {
+  swap(left, right) {
     let temp = this.array[left];
-    this.array[left] = this.array[rigth];
-    this.array[rigth] = temp;
+    this.array[left] = this.array[right];
+    this.array[right] = temp;
   }
 
   /**
@@ -88,9 +88,84 @@ class TestSort {
   }
 
   /**
-   * 希尔排序
+   * 希尔算法
    */
-  shellSort() {}
+  shellSort() {
+    let len = this.array.length;
+    let gap = Math.floor(len / 2);
+    // 循环间隔
+    while (gap >= 1) {
+      for (let i = gap; i < len; i++) {
+        let j = i;
+        let temp = this.array[j];
+        while (this.array[j - gap] > temp && j > gap - 1) {
+          this.array[j] = this.array[j - gap];
+          j -= gap;
+        }
+        this.array[j] = temp;
+      }
+      gap = Math.floor(gap / 2);
+    }
+  }
+
+  /**
+   * 选择枢纽
+   */
+  median(left, right) {
+    //
+    let center = Math.floor((left + right) / 2);
+    // 2. 判断大小，交换位置
+    if (this.array[left] > this.array[center]) {
+      this.swap(left, center);
+    }
+    if (this.array[center] > this.array[right]) {
+      this.swap(center, right);
+    }
+    if (this.array[left] > this.array[center]) {
+      this.swap(left, center);
+    }
+
+    // 把中间位置放在倒数第二位置
+    this.swap(center, right - 1);
+
+    return this.array[right - 1];
+  }
+
+  /**
+   * 快速排序
+   */
+  quickSort() {
+    let len = this.array.length;
+    this.quick(0, len - 1);
+  }
+
+  /**
+   * 快速排序实现
+   */
+  quick(left, right) {
+    if (left >= right) return false;
+
+    let pivot = this.median(left, right);
+    let i = left;
+    let j = right - 1;
+    while (i != j) {
+      console.log('前=', i, j, right);
+
+      while (this.array[i++] < pivot) {}
+      while (this.array[j--] > pivot) {}
+      console.log(i, j, right);
+
+      if (i < j) {
+        this.swap(i, j);
+      } else {
+        break;
+      }
+    }
+    this.swap(i, right - 1);
+
+    this.quick(left, i - 1);
+    this.quick(i + 1, right);
+  }
 }
 
 const list = new TestSort();
@@ -106,9 +181,13 @@ list.insert(0);
 list.insert(15);
 list.insert(11);
 list.insert(12);
+console.time('sort');
 
 // list.bubblingSort(); // 冒泡
 // list.selectSort(); // 选择
-list.insertSort(); // 选择
+// list.insertSort(); // 插入
+// list.shellSort(); // 希尔
+list.quickSort(); // 希尔
 console.log(list.array);
 console.log(list.index);
+console.timeEnd('sort');

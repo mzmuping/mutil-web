@@ -27,6 +27,7 @@ class ArrayList {
    * 时间复杂度O(n^2)
    */
   bubblesort() {
+    console.time('Sort');
     const len = this.array.length;
     const arr = this.array;
     // 第一种
@@ -48,6 +49,7 @@ class ArrayList {
         this.index++;
       }
     }
+    console.timeEnd('Sort');
   }
 
   /**
@@ -56,6 +58,8 @@ class ArrayList {
    * 时间复杂度O(n^2)
    */
   selectionSort() {
+    console.time('Sort');
+
     const len = this.array.length;
 
     for (let j = 0; j < len - 1; j++) {
@@ -68,12 +72,15 @@ class ArrayList {
       }
       this.swap(min, j);
     }
+    console.timeEnd('Sort');
   }
 
   /**
    * 插入排序
    */
   insertSort() {
+    console.time('Sort');
+
     const len = this.array.length;
 
     for (let i = 1; i < len; i++) {
@@ -86,6 +93,7 @@ class ArrayList {
       }
       this.array[j] = temp;
     }
+    console.timeEnd('Sort');
   }
 
   /**
@@ -93,9 +101,9 @@ class ArrayList {
    * 原理：分隔，插入排序
    */
   shellSort() {
+    console.time('Sort');
     // 1.获取数组长度
     const len = this.array.length;
-    let index = 0;
     // 2.初始化增量
     let gap = Math.floor(len / 2);
 
@@ -105,10 +113,12 @@ class ArrayList {
       for (let i = gap; i < len; i++) {
         const temp = this.array[i];
         let j = i;
+        console.log('j=', j);
         while (this.array[j - gap] > temp && j > gap - 1) {
           this.array[j] = this.array[j - gap];
           j -= gap;
-          index++;
+
+          console.log('j2=', j);
         }
         // 5.将j位的元素赋值temp
         this.array[j] = temp;
@@ -116,59 +126,61 @@ class ArrayList {
       // gap每次重新分配，减少一半，最后等于1，执行最后一次
       gap = Math.floor(gap / 2);
     }
-    console.log(index);
+    console.timeEnd('Sort');
   }
 
   /**
    * 快速排序
    * 选择枢纽
    */
-  median(left, rigth) {
+  median(left, right) {
     // 1. 取出中间的位置
-    let center = Math.floor((left + rigth) / 2);
+    let center = Math.floor((left + right) / 2);
     // 2. 判断大小，交换位置
     if (this.array[left] > this.array[center]) {
       this.swap(left, center);
     }
-    if (this.array[center] > this.array[rigth]) {
-      this.swap(center, rigth);
+    if (this.array[center] > this.array[right]) {
+      this.swap(center, right);
     }
     if (this.array[left] > this.array[center]) {
       this.swap(left, center);
     }
 
-    this.swap(center, rigth - 1);
+    this.swap(center, right - 1);
 
-    return this.array[rigth - 1];
+    return this.array[right - 1];
   }
 
   /**
    * 快速排序
    */
   quickSort() {
+    console.time('Sort');
     this.quick(0, this.array.length - 1);
     console.log('this.index=', this.index);
+    console.timeEnd('Sort');
   }
 
   /**
    * 快速排序实现
    */
-  quick(left, rigth) {
+  quick(left, right) {
     // 1. 结束递归
-    if (left >= rigth) return false;
+    if (left >= right) return false;
 
     // 2、获取枢纽
-    let pivot = this.median(left, rigth);
+    let pivot = this.median(left, right);
 
     // 3. 定义变量，用于记录当前找到的位置
     let i = left;
-    let j = rigth - 1;
+    let j = right - 1;
 
     // 4. 开始进行交换
     while (i != j) {
       while (this.array[++i] < pivot) {}
       while (this.array[--j] > pivot) {}
-      this.index++;
+
       if (i < j) {
         this.swap(i, j);
       } else {
@@ -177,11 +189,11 @@ class ArrayList {
     }
 
     // 5. 将枢纽放置在正确位置，i的位置
-    this.swap(i, rigth - 1);
+    this.swap(i, right - 1);
 
     // 6. 分而治之
     this.quick(left, i - 1);
-    this.quick(i + 1, rigth);
+    this.quick(i + 1, right);
   }
 }
 
@@ -205,10 +217,14 @@ list.insert(8);
 list.insert(4);
 list.insert(11);
 
+// for (let k = 0; k < 1000; k++) {
+//   list.insert(Math.random() * 1000);
+// }
+
 // list.bubblesort();
 // console.log('冒泡排序=', list.array);
 
-list.selectionSort();
+// list.selectionSort();
 // console.log('选择排序=', list.array);
 
 // list.insertSort();
@@ -217,7 +233,7 @@ list.selectionSort();
 // list.shellSort();
 // console.log('希尔排序=', list.array);
 
-// list.quickSort();
+list.quickSort();
 
 console.log(list.array);
 console.log(list.index);
