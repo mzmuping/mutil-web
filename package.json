@@ -10,7 +10,7 @@
     "build": "dotenv -e envs/.env.production -- npx webpack  --config build/webpack.prod.config.js",
     "prepare":"husky install",
     "lint:js": "eslint --fix --ext .js src/",
-    "eslint":"eslint "
+    "eslint":"eslint ./src"
   },
   "author": "",
   "license": "ISC",
