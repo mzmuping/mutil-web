@@ -1,3 +1,9 @@
+/**
+ * 使用二分法查询，有序才有用
+ * @param {*} nums
+ * @param {*} target
+ * @returns
+ */
 function search(nums, target) {
   if (!nums || nums.length <= 0) return -1;
   let l = 0;

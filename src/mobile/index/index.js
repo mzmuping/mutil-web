@@ -4,6 +4,7 @@ import '@/print.js';
 import './index.less';
 import './队列.js';
 // const pdf = require("../../assets/package.opf")
+import './模仿pipe与compose.js';
 import './搜索旋转排序数组.js';
 import './栈结构.js';
 const book = ePub(

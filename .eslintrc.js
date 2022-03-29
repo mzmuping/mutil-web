@@ -14,6 +14,7 @@ module.exports = {
     'prettier/prettier': ['error'],
     eqeqeq: 'off',
     'prefer-const': 'off',
-    'no-empty': 'off'
+    'no-empty': 'off',
+    'no-unused-vars': 'off'
   }
 };
