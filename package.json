@@ -8,9 +8,9 @@
     "start": "eslint ./src && webpack serve --open ",
     "dev": "dotenv -e envs/.env.development -- npx webpack serve --config build/webpack.dev.config.js",
     "build": "dotenv -e envs/.env.production -- npx webpack  --config build/webpack.prod.config.js",
-    "prepare":"husky install",
+    "prepare": "husky install",
     "lint:js": "eslint --fix --ext .js src/",
-    "eslint":"eslint ./src"
+    "eslint": "eslint ./src"
   },
   "author": "",
   "license": "ISC",
@@ -69,7 +69,8 @@
   },
   "lint-staged": {
     "./src/*.{js,jsx,ts,tsx}": [
-      "eslint ./src", "eslint --fix --ext .js src/ -- prettier --write"
+      "eslint ./src",
+      "eslint --fix --ext .js src/ -- prettier --write"
     ],
     "**/*.less": [
       "stylelint --syntax less",
