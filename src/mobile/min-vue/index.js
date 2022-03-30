@@ -1,4 +1,3 @@
-import { Contents } from 'epubjs';
 import { reactive, effectWatch } from './core';
 
 const App = {
