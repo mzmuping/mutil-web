@@ -1,5 +1,13 @@
 [
+    "mobile/algorithm/index.html",
+    "mobile/call与apply与bind/index.html",
+    "mobile/collections/index.html",
+    "mobile/double-link-list/index.html",
+    "mobile/hash-table/index.html",
     "mobile/index/index.html",
-    "mobile/list/index.html",
+    "mobile/min-vue/index.html",
+    "mobile/singe-link-list/index.html",
+    "mobile/sort/index.html",
+    "mobile/test-sort/index.html",
     "pc/index/index.html"
 ]
