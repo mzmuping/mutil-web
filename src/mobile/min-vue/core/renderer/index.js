@@ -71,15 +71,15 @@ export function diff(n1, n2) {
         let newVal = newProps[key];
         let oldVal = oldProps[key];
         if (oldVal !== newVal) {
-          n1.el.setAttribute(key, newVal);
+          n1.el.setAttribute && n1.el.setAttribute(key, newVal);
         }
       });
     }
 
     if (oldProps) {
-      Object.keys(newProps).forEach((key) => {
+      Object.keys(oldProps).forEach((key) => {
         if (!newProps[key]) {
-          n1.el.removeAttribute(key);
+          n1.el.removeAttribute && n1.el.removeAttribute(key);
         }
       });
     }

@@ -59,14 +59,7 @@ export default {
         class: 'min-vue'
       },
       [
-        h(
-          'div',
-          {
-            id: 'app-1',
-            class: 'min-vue'
-          },
-          '1233'
-        ),
+        h('div', {}, '1233'),
         h(
           'div',
           {

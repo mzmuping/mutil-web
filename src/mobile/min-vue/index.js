@@ -1,4 +1,4 @@
 import { createAppp } from './core';
-import App from './components/app';
+import App from './src/app';
 
 createAppp(App).mount(document.querySelector('#app'));

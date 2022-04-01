@@ -62,8 +62,70 @@ export function diff(n1, n2) {
   // tag
   if (n1.tag !== n2.tag) {
     el.replaceWith(mountElement(n2, null, true));
-  }
-  // props
+  } else {
+    // props
+    let { props: oldProps } = n1;
+    let { props: newProps } = n2;
+    if (oldProps && newProps) {
+      Object.keys(newProps).forEach((key) => {
+        if (newProps[key] !== oldProps[key]) {
+          el.setAttribute(key, newProps[key]);
+        }
+      });
+    }
+    if (oldProps) {
+      Object.keys(oldProps).forEach((key) => {
+        if (!newProps[key]) {
+          el.removeAttribute(key);
+        }
+      });
+    }
 
-  // children
+    // children
+    // newchildren => string (old==> string ,array)
+    // newchildren => array (old==> string ,array)
+    const { children: oldChildren } = n1;
+    const { children: newChildren } = n2;
+
+    if (typeof newChildren === 'string') {
+      if (typeof oldChildren === 'string') {
+        if (newChildren !== oldChildren) {
+          el.textContent = newChildren;
+        }
+      } else if (Array.isArray(oldChildren)) {
+        el.innerHtml = '';
+        oldChildren.forEach((vnode) => {
+          mountElement(vnode, el);
+        });
+      }
+    } else if (Array.isArray(newChildren)) {
+      if (typeof oldChildren === 'string') {
+        el.innerHtml = '';
+        newChildren.forEach((vnode) => {
+          mountElement(vnode, el);
+        });
+      } else if (Array.isArray(oldChildren)) {
+        let min = Math.min(newChildren.length, oldChildren.length);
+
+        for (let i = 0; i < min; i++) {
+          let oldNode = oldChildren[i];
+          let newNode = newChildren[i];
+          diff(oldNode, newNode);
+        }
+
+        if (newChildren.length > min) {
+          for (let i = min; i < newChildren.length; i++) {
+            mountElement(newChildren[i], el);
+          }
+        }
+
+        if (oldChildren.length > min) {
+          for (let i = min; i < oldChildren.length; i++) {
+            // oldChildren.el.parentHtml.removeChild(oldChildren.el);
+            oldChildren[i].el.remove();
+          }
+        }
+      }
+    }
+  }
 }
