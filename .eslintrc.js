@@ -15,6 +15,7 @@ module.exports = {
     eqeqeq: 'off',
     'prefer-const': 'off',
     'no-empty': 'off',
-    'no-unused-vars': 'off'
+    'no-unused-vars': 'off',
+    'no-debugger':'off'
   }
 };
