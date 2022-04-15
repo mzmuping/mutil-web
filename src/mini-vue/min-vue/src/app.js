@@ -15,7 +15,7 @@ export default {
             id: 'app-1',
             class: 'min-vue'
           },
-          '1233'
+          '1233' + context.state2.num
         ),
         h(
           'div',
@@ -46,7 +46,8 @@ export default {
                 id: 'min--child-1',
                 class: 'min--child-1'
               },
-              'min--child-1'
+
+              'min--child-1' + String(context.state2.obj.obj.count)
             )
           ]
         )
@@ -82,7 +83,7 @@ export default {
                 id: 'min--child-1',
                 class: 'min--child-1'
               },
-              'min--child-1'
+              String(context.state2.obj.obj.count)
             )
           ]
         )
@@ -98,13 +99,24 @@ export default {
       count: 0
     });
 
+    let state2 = reactive({
+      num: 0,
+      obj: {
+        obj: {
+          count: 10
+        }
+      }
+    });
+
     console.log(sucess);
     window.state = state;
+    window.state2 = state2;
     window.sucess = sucess;
 
     return {
       state,
-      sucess
+      sucess,
+      state2
     };
   }
 };
