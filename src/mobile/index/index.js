@@ -24,3 +24,11 @@ book.ready.then(() => {
   bookReady = true;
   console.log(bookReady);
 });
+
+let arrs = [1, 1, 1, 1, 2, 3, 4, 1, 1, 1, 1];
+// 去重
+arrs = arrs.filter((item, index, arr) => {
+  return arr.indexOf(item, 0) === index;
+});
+
+console.log('arrs=', arrs);
