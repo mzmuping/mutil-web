@@ -1,4 +1,6 @@
 import { cloneDeeps } from './cloneDeep';
+import './懒加载';
+/*
 let obj = { a: new Date() };
 let date = new Date();
 let arr = [
@@ -18,3 +20,4 @@ arrObj[4]();
 copydate.setTime(12222);
 console.log(copydate, date);
 console.log(arr, arrObj);
+*/

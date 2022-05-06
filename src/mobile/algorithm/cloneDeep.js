@@ -22,7 +22,9 @@ export function cloneDeeps(target) {
     case '[object Date]':
       newTarget = new Ctor(+target);
       break;
-
+    case '[object RegExp]':
+      newTarget = new Ctor(target.source);
+      break;
     default:
       newTarget = target;
       break;
