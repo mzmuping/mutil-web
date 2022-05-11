@@ -13,4 +13,6 @@ module.exports = {
   endOfLine: "auto",
   "no-prototype-builtins": 'off',
   eqeqeq: 'off',
+  endOfLine: "auto",
+  trailingComma: "es5",
 }

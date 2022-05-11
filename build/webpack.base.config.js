@@ -99,6 +99,7 @@ module.exports = {
         ],
         enforce: 'pre'
       },
+      { test: /\.tsx?$/, loader: 'ts-loader' },
       {
         test: /\.(le|c)ss$/i,
         use: [
@@ -120,14 +121,14 @@ module.exports = {
   plugins: [
     ...htmlPlugins,
     isEnvProduction &&
-      new MiniCssExtractPlugin({
-        filename: 'static/css/[contenthash:8].css',
-        chunkFilename: 'static/css/[contenthash:8].chunk.css'
-      }),
+    new MiniCssExtractPlugin({
+      filename: 'static/css/[contenthash:8].css',
+      chunkFilename: 'static/css/[contenthash:8].chunk.css'
+    }),
     isEnvProduction && new DedeCMSWebpackPlugin(),
     isEnvProduction &&
-      new FileListPlugin({
-        filename: '文档.md'
-      })
+    new FileListPlugin({
+      filename: '文档.md'
+    })
   ].filter(Boolean)
 };

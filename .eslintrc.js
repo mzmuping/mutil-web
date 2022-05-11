@@ -16,6 +16,6 @@ module.exports = {
     'prefer-const': 'off',
     'no-empty': 'off',
     'no-unused-vars': 'off',
-    'no-debugger':'off'
+    'no-debugger': 'off'
   }
 };

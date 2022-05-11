@@ -19,7 +19,8 @@
                     "edge": "17"
                 }
             }
-        ]
+        ],
+        "@babel/preset-react"
     ],
     "plugins": []
 }

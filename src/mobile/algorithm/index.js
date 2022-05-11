@@ -1,5 +1,6 @@
 import { cloneDeeps } from './cloneDeep';
 import './懒加载';
+import './react';
 /*
 let obj = { a: new Date() };
 let date = new Date();
