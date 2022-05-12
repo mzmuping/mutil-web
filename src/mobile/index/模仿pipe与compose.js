@@ -7,15 +7,15 @@
  * @returns
  */
 function compose() {
-    let fns = Array.prototype.slice.call(arguments);
-    return function (arg) {
-        let res = arg;
-        for (let i = fns.length - 1; i >= 0; i--) {
-            let fn = fns[i];
-            res = fn(res);
-        }
-        return res;
-    };
+  let fns = Array.prototype.slice.call(arguments);
+  return function (arg) {
+    let res = arg;
+    for (let i = fns.length - 1; i >= 0; i--) {
+      let fn = fns[i];
+      res = fn(res);
+    }
+    return res;
+  };
 }
 /**
  * pipe函数与compose函数十分相近，也是一个函数执行完毕后将结果作为参数传递给另一个函数，
@@ -26,39 +26,39 @@ function compose() {
  * @returns
  */
 function pipe() {
-    const fns = Array.prototype.slice.call(arguments);
-    const content = this;
-    return function () {
-        const args1 = Array.prototype.slice.call(arguments);
-        let count = 0;
-        function next() {
-            const args = Array.prototype.slice.call(arguments);
-            const fn = fns.shift();
-            count = fn.apply(content, args);
-            if (fns.length > 0) {
-                next(count);
-            }
-            return count;
-        }
+  const fns = Array.prototype.slice.call(arguments);
+  const content = this;
+  return function () {
+    const args1 = Array.prototype.slice.call(arguments);
+    let count = 0;
+    function next() {
+      const args = Array.prototype.slice.call(arguments);
+      const fn = fns.shift();
+      count = fn.apply(content, args);
+      if (fns.length > 0) {
+        next(count);
+      }
+      return count;
+    }
 
-        return next.apply(null, args1);
-    };
+    return next.apply(null, args1);
+  };
 }
 
 function addOne(num) {
-    return num + 1;
+  return num + 1;
 }
 
 function addTwo(num) {
-    return num + 2;
+  return num + 2;
 }
 
 function addThree(num) {
-    return num + 3;
+  return num + 3;
 }
 
 function addFour(num) {
-    return num + 4;
+  return num + 4;
 }
 
 const fn = pipe(addOne, addTwo, addThree, addFour);

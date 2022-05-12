@@ -8,7 +8,7 @@ const FileListPlugin = require('./file-list-webpack-plugin');
 const {
   getMultiPageHtml,
   getMultiPageConfig,
-  isEnvProduction
+  isEnvProduction,
 } = require('./utils');
 const { appDir, srcDir } = require('./paths');
 const multiPageList = getMultiPageHtml('src');
@@ -27,15 +27,15 @@ module.exports = {
     chunkFilename: 'static/js/[name].bundle.js',
     path: path.resolve(process.cwd(), 'dist'),
     publicPath: '/',
-    clean: true // 在生成文件之前清空 output 目录
+    clean: true, // 在生成文件之前清空 output 目录
   },
   resolve: {
     alias: {
       '@': appDir,
-      src: srcDir
+      src: srcDir,
     },
 
-    extensions: ['.js', '.jsx', '.ts', '.json', '.wasm']
+    extensions: ['.js', '.jsx', '.ts', '.json', '.wasm'],
   },
   externals: {},
   optimization: {
@@ -50,7 +50,7 @@ module.exports = {
           // 表示提取公共部分最小的大小
           minSize: 0,
           // 提取出来的文件命名
-          name: 'commons'
+          name: 'commons',
         },
         // 打包第三方库的文件
         vendor: {
@@ -58,14 +58,14 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           chunks: 'initial',
           priority: 10,
-          minChunks: 2 // 同时引用了2次才打包
-        }
-      }
+          minChunks: 2, // 同时引用了2次才打包
+        },
+      },
     },
     runtimeChunk: { name: 'manifest' }, // 运行时代码
     minimizer: [
-      new CssMinimizerPlugin() // 压缩css
-    ]
+      new CssMinimizerPlugin(), // 压缩css
+    ],
   },
   module: {
     rules: [
@@ -74,30 +74,30 @@ module.exports = {
         type: 'asset', // https://webpack.docschina.org/guides/asset-modules
         generator: {
           // 输出文件名
-          filename: 'static/img/[name].[hash][ext][query]'
+          filename: 'static/img/[name].[hash][ext][query]',
         },
         parser: {
           dataUrlCondition: {
-            maxSize: 4 * 1024 // 4kb dataURL形式
-          }
-        }
+            maxSize: 4 * 1024, // 4kb dataURL形式
+          },
+        },
       },
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader'
+            loader: 'babel-loader',
             // options:{}放在 .babelrc
           },
           {
             loader: 'eslint-loader',
             options: {
-              fix: true
-            }
-          }
+              fix: true,
+            },
+          },
         ],
-        enforce: 'pre'
+        enforce: 'pre',
       },
       { test: /\.tsx?$/, loader: 'ts-loader' },
       {
@@ -110,25 +110,25 @@ module.exports = {
             loader: 'less-loader',
             options: {
               lessOptions: {
-                strictMath: true
-              }
-            }
-          }
-        ]
-      }
-    ]
+                strictMath: true,
+              },
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     ...htmlPlugins,
     isEnvProduction &&
     new MiniCssExtractPlugin({
       filename: 'static/css/[contenthash:8].css',
-      chunkFilename: 'static/css/[contenthash:8].chunk.css'
+      chunkFilename: 'static/css/[contenthash:8].chunk.css',
     }),
     isEnvProduction && new DedeCMSWebpackPlugin(),
     isEnvProduction &&
     new FileListPlugin({
-      filename: '文档.md'
-    })
-  ].filter(Boolean)
+      filename: '文档.md',
+    }),
+  ].filter(Boolean),
 };
