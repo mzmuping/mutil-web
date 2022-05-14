@@ -12,7 +12,7 @@ const App = () => {
   const initalState = { ...user, ...counter };
   const [exmapleState, setExmapleState] = useReducer(reducer, initalState);
   const [value, setValue] = useState('');
-
+  console.log('app====');
   return (
     <Appcontext.Provider value={{ exmapleState, dispatch: setExmapleState }}>
       <Memo />

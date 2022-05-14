@@ -6,10 +6,10 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(process.cwd(), 'dist-loader'),
-    filename: 'main.js'
+    filename: 'main.js',
   },
   resolve: {
-    alias: {}
+    alias: {},
   },
   module: {
     rules: [
@@ -18,9 +18,9 @@ module.exports = {
         exclude: /node_modules/,
         use: [
           {
-            loader: 'babel-loader'
-          }
-        ]
+            loader: 'babel-loader',
+          },
+        ],
       },
       {
         test: /\.(c|le)ss$/,
@@ -30,19 +30,19 @@ module.exports = {
           {
             loader: MyBabelLoader,
             options: {
-              modules: true
-            }
+              modules: true,
+            },
           },
           {
             loader: 'less-loader',
             options: {
               lessOptions: {
-                strictMath: true
-              }
-            }
-          }
-        ]
-      }
-    ]
-  }
+                strictMath: true,
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
 };

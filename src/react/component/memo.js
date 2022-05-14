@@ -30,12 +30,13 @@ const List = React.memo(({ dataList }) => {
 });
 
 export default () => {
+  console.log('memo==');
   const [count, setCount] = useState(0);
   const [dataList, setDataList] = useState([]);
   const [style] = useState({
     color: '#fff',
   });
-  const [interval, setInterval] = useState(1000);
+  const [interval, setInterval] = useState(undefined);
   const cxt = useContext(Appcontext);
   const { count: globalCount } = cxt.exmapleState;
   const preCount = usePrevious(count);
