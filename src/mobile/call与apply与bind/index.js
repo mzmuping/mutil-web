@@ -82,6 +82,12 @@ Function.prototype.myApply = function (context, arr) {
 // bar.call2(foo, 'kevin', 18);
 bar.myApply(foo, ['kevin', 18]);
 
+Function.prototype.myBind = function (context) {
+  return function (...args) {
+    this.apply(context, args);
+  };
+};
+
 let targetMap = new Map();
 
 function reactive(raw) {
