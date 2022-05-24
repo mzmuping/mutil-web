@@ -78,6 +78,15 @@ Function.prototype.myApply = function (context, arr) {
   return result;
 };
 
+Function.prototype.apply = function (context, arr) {
+  context = context || window;
+  context.fn = this;
+  arr = arr || [];
+  const res = context.fn(...arr);
+  delete context.fn;
+  return res;
+};
+
 // 测试
 // bar.call2(foo, 'kevin', 18);
 bar.myApply(foo, ['kevin', 18]);

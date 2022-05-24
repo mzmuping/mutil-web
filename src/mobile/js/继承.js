@@ -1,7 +1,7 @@
 function Animal(name, age) {
   this.name = name;
   this.age = age;
-  this.sleep = function () { };
+  this.sleep = function () {};
 }
 
 // 构建函数继承
