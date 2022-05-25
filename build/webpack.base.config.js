@@ -34,7 +34,6 @@ module.exports = {
       '@': appDir,
       src: srcDir,
     },
-
     extensions: ['.js', '.jsx', '.ts', '.json', '.wasm'],
   },
   externals: {},
@@ -103,6 +102,7 @@ module.exports = {
       {
         test: /\.(le|c)ss$/i,
         use: [
+          // style-loader 会把css注入js中，MiniCssExtractPlugin 分离css
           isEnvProduction ? MiniCssExtractPlugin.loader : 'style-loader',
           'css-loader',
           'postcss-loader',
@@ -121,14 +121,14 @@ module.exports = {
   plugins: [
     ...htmlPlugins,
     isEnvProduction &&
-    new MiniCssExtractPlugin({
-      filename: 'static/css/[contenthash:8].css',
-      chunkFilename: 'static/css/[contenthash:8].chunk.css',
-    }),
+      new MiniCssExtractPlugin({
+        filename: 'static/css/[contenthash:8].css',
+        chunkFilename: 'static/css/[contenthash:8].chunk.css',
+      }),
     isEnvProduction && new DedeCMSWebpackPlugin(),
     isEnvProduction &&
-    new FileListPlugin({
-      filename: '文档.md',
-    }),
+      new FileListPlugin({
+        filename: '文档.md',
+      }),
   ].filter(Boolean),
 };
