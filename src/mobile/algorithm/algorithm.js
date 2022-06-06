@@ -1,43 +1,4 @@
 /**
- * 1. 判断字符只有 '()','[]','{}',
- * 2. 而且是对称一堆
- * @param {*} str
- * @returns
- */
-
-/**
- * 自己是现实，效率太低了
- * @param {*} str
- * @returns
- */
-function isValid(str) {
-  if (!str || str.length % 2 != 0) return false;
-  let mapx = {
-    '[': ']',
-    '(': ')',
-    '{': '}'
-  };
-  let arr = str.split('');
-
-  while (arr.length > 0) {
-    let len = arr.length;
-    for (let i = 0; i < len - 1; i++) {
-      let item = arr[i];
-      let next = arr[i + 1];
-      if (mapx[item] === next) {
-        arr.splice(i, 2);
-        break;
-      }
-      if (i >= len - 2) {
-        return false;
-      }
-    }
-  }
-
-  return true;
-}
-
-/**
  * 实现的，效率搞
  * @param {s} s 字符串
  * @returns boolean
@@ -83,12 +44,6 @@ let test2 = '(){}[]'; // true
 let test3 = '(]'; // false
 let test4 = '{()}'; // true
 let test5 = '{[(){}]()}'; // false
-console.log('isValid=====');
-console.log(isValid(test1));
-console.log(isValid(test2));
-console.log(isValid(test3));
-console.log(isValid(test4));
-console.log(isValid(test5));
 
 console.log('isValid2=====');
 
@@ -129,13 +84,13 @@ function cloneDeep(obj) {
 let obj = {
   a: {
     b: {
-      c: 1
+      c: 1,
     },
     d: [1, 2, 4, 5, 6, 7],
     f: () => {},
     s: null,
-    u: undefined
-  }
+    u: undefined,
+  },
 };
 console.log(cloneDeep(obj));
 console.log(JSON.stringify(obj));
@@ -194,7 +149,7 @@ let observer = new MutationObserver(() => {
   const score = computedScore(body, 1);
   observerData.push({
     score,
-    time
+    time,
   });
 
   // complete时去调用 unmountObserver
@@ -205,7 +160,7 @@ let observer = new MutationObserver(() => {
 });
 observer.observe(document, {
   childList: true,
-  subtree: true
+  subtree: true,
 });
 
 function computedScore(element, layer) {
@@ -241,7 +196,7 @@ function getFirstScreenTime() {
     if (!data || data.rate <= differ) {
       data = {
         time: observerData[i].time,
-        rate: differ
+        rate: differ,
       };
     }
   }

@@ -8,15 +8,15 @@ module.exports = merge(baseConfig, {
     // static: false,
     static: {
       // 静态资源
-      directory: path.resolve('dist')
+      directory: path.resolve('dist'),
     },
     hot: true,
     client: {
-      overlay: true
+      overlay: true,
     },
     // allowedHosts: 'all',
     // bonjour: true,
     compress: true,
-    port: 9000
-  }
+    port: 9000,
+  },
 });

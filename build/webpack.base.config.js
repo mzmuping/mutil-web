@@ -23,8 +23,8 @@ module.exports = {
   output: {
     // filename: 'static/js/[name].bundle.[contenthash:8].js',
     // chunkFilename: 'static/js/[name].bundle.[contenthash:8].js',
-    filename: 'static/js/[name].bundle.js',
-    chunkFilename: 'static/js/[name].bundle.js',
+    filename: 'static/js/[name].[hash:8].bundle.js',
+    chunkFilename: 'static/js/[name].[hash:8].chunk.bundle.js',
     path: path.resolve(process.cwd(), 'dist'),
     publicPath: '/',
     clean: true, // 在生成文件之前清空 output 目录
@@ -62,6 +62,7 @@ module.exports = {
       },
     },
     runtimeChunk: { name: 'manifest' }, // 运行时代码
+    minimize: isEnvProduction,
     minimizer: [
       new CssMinimizerPlugin(), // 压缩css
     ],
@@ -98,7 +99,7 @@ module.exports = {
         ],
         enforce: 'pre',
       },
-      { test: /\.tsx?$/, loader: 'ts-loader' },
+      { test: /\.tsx?$/, exclude: /node_modules/, loader: 'ts-loader' },
       {
         test: /\.(le|c)ss$/i,
         use: [
@@ -122,8 +123,8 @@ module.exports = {
     ...htmlPlugins,
     isEnvProduction &&
       new MiniCssExtractPlugin({
-        filename: 'static/css/[contenthash:8].css',
-        chunkFilename: 'static/css/[contenthash:8].chunk.css',
+        filename: 'static/css/[name].[contenthash:8].css',
+        chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
       }),
     isEnvProduction && new DedeCMSWebpackPlugin(),
     isEnvProduction &&

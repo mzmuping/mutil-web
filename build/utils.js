@@ -41,7 +41,7 @@ function getMultiPageConfig(files) {
             {},
             {
               inject: true,
-              chunks: ['common', 'vendor', 'manifest', fileDirname],
+              chunks: ['commons', 'vendor', 'manifest', fileDirname],
               template,
               filename: `${fileDirname}.html`,
               minify: {

@@ -2,5 +2,5 @@ const { merge } = require('webpack-merge');
 const baseConfig = require('./webpack.base.config');
 module.exports = merge(baseConfig, {
   mode: 'production',
-  devtool: 'cheap-module-source-map'
+  devtool: 'cheap-module-source-map',
 });
