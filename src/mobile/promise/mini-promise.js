@@ -51,35 +51,20 @@ function MyPromise(fn) {
   fn(resolve, reject);
 }
 
-// const myp = new MyPromise((resolve) => {
-//   setTimeout(() => {
-//     resolve('你哈');
-//   }, 1000);
-// });
-// myp
-//   .then((val) => {
-//     console.log('val==' + val);
-//     return val + '111';
-//   })
-//   .then((val) => {
-//     console.log('val==' + val);
-//     return val + 'sfsdf';
-//   })
-//   .then((val) => {
-//     console.log('val==' + val);
-//   });
-
-let p = new Promise((resolve, reject) => {
-  reject(new Error('sdfsfff'));
-})
-  .then(
-    () => {
-      console.log('成功');
-    },
-    (ERR) => {
-      console.log('失败', ERR);
-    }
-  )
-  .catch((err) => {
-    console.log(err);
+const myp = new MyPromise((resolve) => {
+  setTimeout(() => {
+    resolve('你哈');
+  }, 1000);
+});
+myp
+  .then((val) => {
+    console.log('val==' + val);
+    return val + '111';
+  })
+  .then((val) => {
+    console.log('val==' + val);
+    return val + 'sfsdf';
+  })
+  .then((val) => {
+    console.log('val==' + val);
   });
