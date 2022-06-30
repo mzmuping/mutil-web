@@ -123,7 +123,7 @@ const MySet = (function () {
         for (const value of this) {
           Entries.push({ key: value, value: value });
         }
-        return Entries[Symbol.iterator]();
+        return Entries;
       },
     },
 
@@ -154,6 +154,10 @@ let set2 = new MySet(['foo', 'bar', undefined]);
 //   console.log(item, key, set);
 // });
 // let entries = set2.entries();
+set1.add({ a: 1 });
+set1.add({ a: 1 });
+set1.add({ a: 1 });
+
 console.log(Array.from(set1.entries()));
 console.log(set2);
 

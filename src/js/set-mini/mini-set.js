@@ -26,6 +26,7 @@ class MySet {
       this.set.push(data);
       this.size++;
     }
+    return this;
   }
 
   clear() {
@@ -51,11 +52,16 @@ class MySet {
       yield [value, value];
       index++;
     }
+    // return this.set[Symbol.iterator]();
   }
 
   *values() {
-    for (let value of this.set) {
+    let index = 0;
+    let size = this.size;
+    while (index < size) {
+      let value = this.set[index];
       yield value;
+      index++;
     }
   }
 }
@@ -67,13 +73,13 @@ set1.add('adfad');
 set1.add('adfad');
 set1.add('dd');
 set1.add('fgg');
-set1.add('fgg');
-set1.add('fgg');
-set1.add('fgg');
-set1.delete('fgg');
-set1.clear();
+set1.add({ a: 1 });
+set1.add({ a: 1 });
+// set1.clear();
 let setIterator = set1.entries();
+let setValues = set1.values();
 
-// console.log(setIterator.next());
+console.log(setIterator.next().value);
 console.log(Array.from(setIterator));
+console.log(Array.from(setValues));
 console.log(set1.size);
