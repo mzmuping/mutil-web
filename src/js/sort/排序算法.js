@@ -1,6 +1,6 @@
 class ArrayList {
   constructor() {
-    this.array = [];
+    this.array = [1, 4, 5, 2934, 55, 67, 34];
     this.index = 0;
   }
 
@@ -156,10 +156,10 @@ class ArrayList {
    * 快速排序
    */
   quickSort() {
-    console.time('Sort');
+    // console.time('Sort');
     this.quick(0, this.array.length - 1);
     console.log('this.index=', this.index);
-    console.timeEnd('Sort');
+    // console.timeEnd('Sort');
   }
 
   /**
@@ -199,23 +199,23 @@ class ArrayList {
 
 const list = new ArrayList();
 
-list.insert(42);
-list.insert(27);
-list.insert(46);
-list.insert(6);
-list.insert(5);
-list.insert(3);
-list.insert(1);
-list.insert(2);
-list.insert(22);
-list.insert(223);
-list.insert(23);
-list.insert(12);
-list.insert(32);
-list.insert(7);
-list.insert(8);
-list.insert(4);
-list.insert(11);
+// list.insert(42);
+// list.insert(27);
+// list.insert(46);
+// list.insert(6);
+// list.insert(5);
+// list.insert(3);
+// list.insert(1);
+// list.insert(2);
+// list.insert(22);
+// list.insert(223);
+// list.insert(23);
+// list.insert(12);
+// list.insert(32);
+// list.insert(7);
+// list.insert(8);
+// list.insert(4);
+// list.insert(11);
 
 // for (let k = 0; k < 1000; k++) {
 //   list.insert(Math.random() * 1000);
@@ -232,8 +232,9 @@ list.insert(11);
 
 // list.shellSort();
 // console.log('希尔排序=', list.array);
-
+console.time();
 list.quickSort();
+console.timeEnd();
 
 console.log(list.array);
 console.log(list.index);
