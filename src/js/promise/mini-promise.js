@@ -3,11 +3,12 @@ function MyPromise(fn) {
   const deferreds = [];
   let value = null;
   this.then = function (onFulfilled, onRejected) {
-    return new MyPromise((resolve) => {
+    return new MyPromise((resolve, reject) => {
       handle({
         onFulfilled,
         resolve,
         onRejected,
+        reject,
       });
     });
   };
@@ -25,7 +26,7 @@ function MyPromise(fn) {
         deferred.resolve(deferred.onFulfilled(value));
         return;
       case 'rejected':
-        this.catch('报错了');
+        deferred.reject(deferred.onRejected(value));
     }
   }
   function resolve(_value) {
@@ -63,8 +64,11 @@ myp
   })
   .then((val) => {
     console.log('val==' + val);
-    return val + 'sfsdf';
+    return new MyPromise((resolve, reject) => {
+      console.log('内嵌resolve');
+      resolve(val + '内嵌');
+    });
   })
   .then((val) => {
-    console.log('val==' + val);
+    console.log('val==', val);
   });
