@@ -28,33 +28,66 @@
 
 // console.log(reverseBetween([1, 2, 3, 4, 5, 6, 7, 8], 2, 7));
 
-function ListNode(val, next) {
+function ListNode(val) {
   this.val = val;
   this.next = null;
+  this.pre = null;
 }
-
-let reverseBetween = (head, left, right) => {};
-
-let lists = new SympleList();
-
-function SympleList() {
+// 链表
+function Lists() {
   this.head = null;
+  this.tail = null;
   this.length = 0;
-  this.append = (val) => {
-    let node = new ListNode(val);
-    if (this.head == null) {
-      this.head = node;
-    } else {
-      let next = this.head;
-      while (next.next) {
-        next = next.next;
-      }
-      next.next = node;
+}
+// 单链
+Lists.prototype.append = function (val) {
+  let node = new ListNode(val);
+  if (this.head == null) {
+    this.head = node;
+  } else {
+    let next = this.head;
+    while (next.next) {
+      next = next.next;
     }
-  };
-}
+    next.next = node;
+  }
+};
+// 双链
+Lists.prototype.addDouble = function (val) {
+  let node = new ListNode(val);
+  if (this.head === null) {
+    this.head = node;
+    this.tail = node;
+  } else {
+    this.tail.next = node;
+    node.pre = this.tail;
+    this.tail = node;
+  }
 
+  this.length++;
+};
+// 反转单链表
+let reverseBetween = (head) => {
+  let pre = null;
+  let temp = null;
+  let current = head;
+
+  while (current !== null) {
+    temp = current.next;
+    current.next = pre;
+    pre = current;
+    current = temp;
+  }
+  return pre;
+};
+
+// 单链表
+let singleLists = new Lists();
+let doubleLists = new Lists();
 for (let i = 0; i < 6; i++) {
-  lists.append(i);
+  singleLists.append(i);
+  doubleLists.addDouble(i);
 }
-console.log(lists);
+console.log(singleLists);
+console.log(doubleLists);
+// console.log(reverseBetween(singleLists.head));
