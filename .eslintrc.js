@@ -19,4 +19,12 @@ module.exports = {
     'no-unused-vars': 'off',
     'no-debugger': 'off',
   },
+  overrides: [
+    {
+      files: ['test/*.js'],
+      rules: {
+        quotes: ['error', 'single'],
+      },
+    },
+  ],
 };

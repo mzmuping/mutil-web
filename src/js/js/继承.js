@@ -11,8 +11,9 @@ function Person(name, age) {
 // 原型链继承
 Person.prototype = new Animal();
 Person.prototype.constructor = Person; // 修复构造函数指向
-
 // 构造函数继承+ 原型继承 是组合继承
 
 // 寄生继承
 let Person2 = Object.create(Animal.prototype);
+
+// 写一个 es6 的继承过程
