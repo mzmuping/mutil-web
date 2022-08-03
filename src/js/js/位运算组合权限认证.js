@@ -23,6 +23,6 @@ console.log('vnodeType的类型 class', !!(vnodeType & CHILDRENN));
 // 删除 ^
 vnodeType = vnodeType ^ CLASS;
 console.log('====================');
-console.log('vnodeType的类型 style', !!(vnodeType & STYLE));
-console.log('vnodeType的类型 class', !!(vnodeType & CLASS));
-console.log('vnodeType的类型 class', !!(vnodeType & CHILDRENN));
+console.log('vnodeType的类型 style', !!(vnodeType ^ STYLE));
+console.log('vnodeType的类型 class', !!(vnodeType ^ CLASS));
+console.log('vnodeType的类型 class', !!(vnodeType ^ CHILDRENN));

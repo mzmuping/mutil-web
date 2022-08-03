@@ -1,4 +1,6 @@
 class ArrayList {
+  array;
+  index;
   constructor() {
     this.array = [];
     this.index = 0;
@@ -22,7 +24,7 @@ class ArrayList {
 
   /**
    * 冒泡排序
-   *  - 
+   *  -
    * 效率比较低
    * 空间复杂度O(n^2)
    * 时间复杂度O(n^2)
@@ -179,8 +181,8 @@ class ArrayList {
 
     // 4. 开始进行交换
     while (i != j) {
-      while (this.array[++i] < pivot) { }
-      while (this.array[--j] > pivot) { }
+      while (this.array[++i] < pivot) {}
+      while (this.array[--j] > pivot) {}
 
       if (i < j) {
         this.swap(i, j);
