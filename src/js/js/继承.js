@@ -56,39 +56,77 @@ Animal.prototype = {
  * 缺点：
  *    1. 包含引用类型的属性值始终都会共享相应的值，这点跟原型链继承一样。
  */
-function createObj(o) {
-  // Object.create() 的实现原理
-  function F() {}
-  F.prototype = o;
+// function createObj(o) {
+//   // Object.create() 的实现原理
+//   function F() {}
+//   F.prototype = o;
 
-  return new F();
-}
+//   return new F();
+// }
 
-let person = {
-  name: 'kevin',
-  friends: ['daisy', 'kelly'],
-};
+// let person = {
+//   name: 'kevin',
+//   friends: ['daisy', 'kelly'],
+// };
 
-let person1 = createObj(person);
-let person2 = createObj(person);
+// let person1 = createObj(person);
+// let person2 = createObj(person);
 
-person1.name = 'person1';
-console.log(person2.name); // kevin
+// person1.name = 'person1';
+// console.log(person2.name); // kevin
 
-person1.friends.push('taylor');
-console.log(person2.friends); // ["daisy", "kelly", "taylor"]
+// person1.friends.push('taylor');
+// console.log(person2.friends); // ["daisy", "kelly", "taylor"]
 
 /**
  * 注意：修改person1.name的值，person2.name的值并未发生改变，并不是因为person1和person2有独立的 name 值，
  * 而是因为person1.name = 'person1'，给person1添加了 name 值，并非修改了原型上的 name 值。
  */
 
-// 寄生继承
-// let Person2 = Object.create(Animal.prototype);
+/**
+ * 5. 寄生式继承
+ * 创建一个仅用于封装继承过程的函数，该函数在内部以某种形式来做增强对象，最后返回对象。
+ * 缺点：
+ *     1.跟借用构造函数模式一样，每次创建对象都会创建一遍方法。
+ * */
 
-// 写一个 es6 的继承过程
+// function createObj(o) {
+//   let clone = Object.create(o);
 
-// let person = new Person('af', 1);
-// console.log('====', person.sleep);
-// console.log('====', person.run);
-// person.sleep();
+//   clone.sayName = function () {
+//     console.log(111);
+//   };
+
+//   return clone;
+// }
+
+/**
+ * 6.寄生组合式继承
+ * 优点：
+ *  1.解决组合继承最大的缺点是会调用两次父构造函数
+ *  2.引用类型最理想的继承范式
+ */
+
+function Parent(name) {
+  this.name = name;
+  this.sayName = function () {
+    console.log('你的名称：', this.name);
+  };
+}
+function Child(name) {
+  Parent.call(this, name);
+}
+
+function prototype(child, parent) {
+  let prototype = Object.create(parent.prototype);
+  prototype.contructror = child;
+  child.prototype = prototype;
+}
+
+prototype(Child, Parent);
+
+let child = new Child('嘛嘛嘛');
+
+child.sayName();
+
+// es6 class 被babel转换后就是寄生组合继承方式
