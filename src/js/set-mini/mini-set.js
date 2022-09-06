@@ -1,3 +1,4 @@
+// es6 版
 class MySet {
   constructor() {
     this.set = [];
@@ -76,6 +77,7 @@ set1.add('fgg');
 set1.add({ a: 1 });
 set1.add({ a: 1 });
 // set1.clear();
+let setIterator1 = set1[Symbol.iterator]();
 let setIterator = set1.entries();
 let setValues = set1.values();
 

@@ -1,6 +1,6 @@
 import './iterator';
 import './mini-set';
-// 迭代器
+// es5 版
 const MySet = (function () {
   const wm = new WeakMap();
   const InitPrivate = Symbol('private');
@@ -168,3 +168,20 @@ console.log(set2);
 for (let item of set2) {
   console.log(item);
 }
+
+let a = [
+  {
+    class_id: 'c',
+  },
+  {
+    class_id: 'a',
+  },
+  {
+    class_id: 'b',
+  },
+].sort((a, b) => {
+  console.log(a.class_id - b.class_id);
+  return a.class_id > b.class_id ? 1 : -1;
+});
+
+console.log(aaf);
