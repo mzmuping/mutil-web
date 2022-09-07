@@ -184,4 +184,4 @@ let a = [
   return a.class_id > b.class_id ? 1 : -1;
 });
 
-console.log(aaf);
+console.log(aaa);
