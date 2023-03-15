@@ -183,5 +183,3 @@ let a = [
   console.log(a.class_id - b.class_id);
   return a.class_id > b.class_id ? 1 : -1;
 });
-
-console.log(aaa);
